@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Events;
+namespace Korona\Events;
 
 abstract class Event
 {

@@ -153,10 +153,10 @@ return [
         /*
          * Application Service Providers...
          */
-        App\Providers\AppServiceProvider::class,
-        App\Providers\AuthServiceProvider::class,
-        App\Providers\EventServiceProvider::class,
-        App\Providers\RouteServiceProvider::class,
+        Korona\Providers\AppServiceProvider::class,
+        Korona\Providers\AuthServiceProvider::class,
+        Korona\Providers\EventServiceProvider::class,
+        Korona\Providers\RouteServiceProvider::class,
 
     ],
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Providers;
+namespace Korona\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
