@@ -4,7 +4,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Application Environment
+    | Application Name
     |--------------------------------------------------------------------------
     |
     | This value determines the name of your application. It is displayed in
@@ -13,6 +13,29 @@ return [
     */
 
     'sitename' => env('APP_SITENAME', 'Korona'),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Replacement Patterns
+    |--------------------------------------------------------------------------
+    |
+    | These patterns are used in various places in Korona. You can determine
+    | what certain strings look like by changing the value of these patterns.
+    |
+    */
+
+    'patterns' => [
+
+        /**
+         * Name replacement patterns:
+         *   %F = first name
+         *   %L = last name
+         *   %N = nickname
+         */
+        'civil_name' => '%F %L',
+        'full_name'  => '%F %L v %N',
+
+    ],
 
     /*
     |--------------------------------------------------------------------------
