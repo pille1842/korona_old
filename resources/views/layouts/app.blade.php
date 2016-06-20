@@ -47,7 +47,7 @@
                     @else
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                {{ Auth::user()->name }} <span class="caret"></span>
+                                {{ Auth::user()->username }} <span class="caret"></span>
                             </a>
 
                             <ul class="dropdown-menu" role="menu">
@@ -60,10 +60,14 @@
         </div>
     </nav>
 
+    @if (Session::has('error'))
+        <div class="alert alert-danger">{{ Session::get('error') }}</div>
+    @endif
+
     @yield('content')
 
     <!-- JavaScripts -->
-    <script src="{{ url('/jquery/jquery-3.0.0.js') }}"></script>
+    <script src="{{ url('/jquery/jquery-2.2.4.js') }}"></script>
     <script src="{{ url('/bootstrap/dist/js/bootstrap.js') }}"></script>
 </body>
 </html>
