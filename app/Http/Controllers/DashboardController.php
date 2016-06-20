@@ -5,10 +5,10 @@ namespace Korona\Http\Controllers;
 use Korona\Http\Requests;
 use Illuminate\Http\Request;
 
-class HomeController extends Controller
+class DashboardController extends Controller
 {
     /**
-     * Create a new controller instance.
+     * Erzeuge eine neue Instanz des Controllers.
      *
      * @return void
      */
@@ -18,12 +18,12 @@ class HomeController extends Controller
     }
 
     /**
-     * Show the application dashboard.
+     * Zeige das Korona-Dashboard an.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        return view('home');
+        return view('dashboard');
     }
 }

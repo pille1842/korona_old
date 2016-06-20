@@ -12,6 +12,6 @@ return [
     |
     */
 
-    'home' => 'Startseite',
+    'dashboard' => 'Dashboard',
 
 ];
