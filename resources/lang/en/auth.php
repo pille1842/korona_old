@@ -23,4 +23,5 @@ return [
     'password_forgotten' => 'Forgot Your Password?',
     'reset_password' => 'Reset Your Password',
     'send_reset_link' => 'Send Password Reset Link',
+    'user_inactive' => 'This user account has been deactivated.',
 ];

@@ -7,31 +7,39 @@ use Validator;
 use Korona\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use Illuminate\Http\Request;
 
 class AuthController extends Controller
 {
     /*
     |--------------------------------------------------------------------------
-    | Registration & Login Controller
+    | Controller für Anmeldung & Registrierung
     |--------------------------------------------------------------------------
     |
-    | This controller handles the registration of new users, as well as the
-    | authentication of existing users. By default, this controller uses
-    | a simple trait to add these behaviors. Why don't you explore it?
+    | Dieser Controller leitet die Anmeldung (Login), Abmeldung (Logout) und
+    | Registrierung von Nutzern, wobei die Registrierung standardmäßig
+    | abgeschaltet ist.
     |
     */
 
     use AuthenticatesAndRegistersUsers, ThrottlesLogins;
 
     /**
-     * Where to redirect users after login / registration.
+     * Ziel der Weiterleitung nach der Anmeldung.
      *
      * @var string
      */
     protected $redirectTo = '/';
 
     /**
-     * Create a new authentication controller instance.
+     * Nutzer können sich mit ihrem Namen anmelden.
+     *
+     * @var string
+     */
+    public $username = 'username';
+
+    /**
+     * Erzeuge eine neue Instanz des Authentication-Controllers.
      *
      * @return void
      */
@@ -41,7 +49,7 @@ class AuthController extends Controller
     }
 
     /**
-     * Get a validator for an incoming registration request.
+     * Erzeuge einen Validator für eine eingehende Registrierungsanfrage.
      *
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
@@ -56,7 +64,8 @@ class AuthController extends Controller
     }
 
     /**
-     * Create a new user instance after a valid registration.
+     * Erzeuge eine neue Nutzerinstanz nach der erfolgreichen Registrierung
+     * (Stub, da die Registrierung abgeschaltet ist).
      *
      * @param  array  $data
      * @return User
@@ -66,13 +75,38 @@ class AuthController extends Controller
         throw new Exception('Registrierung wurde abgeschaltet.');
     }
 
+    /**
+     * Überschriebene Methode, um statt des Registrierformulars auf das
+     * Anmeldeformular weiterzuleiten.
+     *
+     * @return Response Weiterleitung nach /login
+     */
     public function showRegistrationForm()
     {
         return redirect('login');
     }
 
+    /**
+     * Überschriebene Methode zur Registrierung (Stub)
+     */
     public function register()
     {
         //
+    }
+
+    /**
+     * Prüft, ob ein Nutzer aktiv ist, und loggt ihn ansonsten wieder aus
+     * @param  Die Anfrage
+     * @param  Der eingeloggte Nutzer
+     * @return Response
+     */
+    public function authenticated(Request $request, User $user)
+    {
+        if ($user->active) {
+            return redirect()->intended($this->redirectPath());
+        } else {
+            $request->session()->flash('error', trans('auth.user_inactive'));
+            return $this->logout();
+        }
     }
 }

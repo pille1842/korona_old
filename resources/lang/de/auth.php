@@ -23,4 +23,5 @@ return [
     'password_forgotten' => 'Passwort vergessen?',
     'reset_password' => 'Passwort zurücksetzen',
     'send_reset_link' => 'Link zum Zurücksetzen abschicken',
+    'user_inactive' => 'Dieses Nutzerkonto wurde abgeschaltet.',
 ];
