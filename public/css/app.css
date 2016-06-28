@@ -1,0 +1,49 @@
+.post {
+    margin: 30px 0;
+}
+
+.post-user {
+    font-weight: bold;
+}
+
+.post-date {
+    font-size: small;
+    display: inline-block;
+    color: grey;
+}
+
+.post-body {
+    text-align: justify;
+}
+
+.post-body h1, h2, h3, h4 {
+    font-size: large;
+    margin-bottom: 15px;
+    margin-top: 0;
+}
+
+.post-body h1 {
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.post-body h2 {
+    font-weight: bold;
+}
+
+.post-body h3 {
+    text-decoration: underline;
+}
+
+.post-body h5 {
+    text-decoration: underline;
+}
+
+.comment {
+    border-bottom: 1px solid #e5e5e5;
+    padding: 10px 0;
+}
+
+.btn-delete-comment, .btn-flag-comment {
+    cursor: pointer;
+}
