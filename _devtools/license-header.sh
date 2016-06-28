@@ -13,5 +13,6 @@ copyright-header -a app \
 
 find /tmp/app -type f -name '*.php' -print0 |xargs -0 sed -i '20s/.*/ \*\//'
 find /tmp/app -type f -name '*.php' -print0 |xargs -0 sed -i '21s/.*//'
+find /tmp/app -type f -name '*.php' -print0 | xargs -0 sed -i -e '$a\'
 cp -r /tmp/app .
 
