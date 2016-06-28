@@ -12,6 +12,7 @@
 
     <!-- Styles -->
     <link rel="stylesheet" href="{{ url('/bootstrap/dist/css/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ url('/css/app.css') }}">
 
 </head>
 <body id="app-layout">
@@ -60,14 +61,18 @@
         </div>
     </nav>
 
-    @if (Session::has('error'))
-        <div class="alert alert-danger">{{ Session::get('error') }}</div>
-    @endif
+    <div class="container">
+        @if (Session::has('error'))
+            <div class="alert alert-danger col-md-10 col-md-offset-1">{{ Session::get('error') }}</div>
+        @endif
 
-    @yield('content')
+        @yield('content')
+    </div>
 
     <!-- JavaScripts -->
+    <input type="hidden" name="token" id="token" value="{{ csrf_token() }}">
     <script src="{{ url('/jquery/jquery-2.2.4.js') }}"></script>
     <script src="{{ url('/bootstrap/dist/js/bootstrap.js') }}"></script>
+    <script src="{{ url('/js/app.js') }}"></script>
 </body>
 </html>
