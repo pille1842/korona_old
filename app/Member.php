@@ -35,6 +35,7 @@ class Member extends Model
      */
     public function replaceNamePattern($pattern)
     {
+        $name = $pattern;
         $name = str_replace('%F', $this->firstname, $name);
         $name = str_replace('%L', $this->lastname, $name);
         $name = str_replace('%N', $this->nickname, $name);

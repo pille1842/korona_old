@@ -21,6 +21,7 @@ class UsersTableSeeder extends Seeder
         $user->username = 'Test1';
         $user->password = Hash::make('test1');
         $user->email    = 'test1@homestead.app';
+        $user->handle   = 'test1';
         $user->active   = true;
         $user->save();
 
@@ -38,6 +39,7 @@ class UsersTableSeeder extends Seeder
         $user2->password = Hash::make('test2');
         $user2->email    = 'test2@homestead.app';
         $user2->active   = true;
+        $user2->handle   = 'test2';
         $user2->save();
 
         $member2             = new Member();
@@ -54,6 +56,7 @@ class UsersTableSeeder extends Seeder
         $user3->password = Hash::make('test3');
         $user3->email    = 'test3@homestead.app';
         $user3->active   = true;
+        $user3->handle   = 'test3';
         $user3->save();
 
         $member3             = new Member();
