@@ -3,3 +3,6 @@
 
 Korona ist ein Community Management System speziell für Schüler- und Studentenverbindungen
 aus dem deutschsprachigen Raum.
+
+## Features
+
