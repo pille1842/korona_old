@@ -52,6 +52,7 @@
                             </a>
 
                             <ul class="dropdown-menu" role="menu">
+                                <li><a href="{{ url('/profile') }}">Mein Profil</a>
                                 <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>{{ trans('auth.logout') }}</a></li>
                             </ul>
                         </li>
