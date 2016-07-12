@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="{{ url('/css/app.css') }}">
 
 </head>
-<body id="app-layout">
+<body id="app-layout" ng-app="koronaApp">
     <nav class="navbar navbar-default navbar-static-top">
         <div class="container">
             <div class="navbar-header">
@@ -46,12 +46,12 @@
                     @if (Auth::guest())
                         <li><a href="{{ url('/login') }}">{{ trans('auth.login') }}</a></li>
                     @else
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                        <li uib-dropdown on-toggle="toggled(open)" class="dropdown">
+                            <a href id="auth-menu" uib-dropdown-toggle role="button" aria-expanded="false">
                                 {{ Auth::user()->username }} <span class="caret"></span>
                             </a>
 
-                            <ul class="dropdown-menu" role="menu">
+                            <ul uib-dropdown-menu aria-labelledby="auth-menu">
                                 <li><a href="{{ url('/profile') }}">Mein Profil</a>
                                 <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>{{ trans('auth.logout') }}</a></li>
                             </ul>
@@ -72,8 +72,8 @@
 
     <!-- JavaScripts -->
     <input type="hidden" name="token" id="token" value="{{ csrf_token() }}">
-    <script src="{{ url('/jquery/jquery-2.2.4.js') }}"></script>
-    <script src="{{ url('/bootstrap/dist/js/bootstrap.js') }}"></script>
+    <script src="{{ url('/js/angular.min.js') }}"></script>
+    <script src="{{ url('/js/ui-bootstrap-1.3.3.js') }}"></script>
     <script src="{{ url('/js/app.js') }}"></script>
 </body>
 </html>

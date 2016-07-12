@@ -30,11 +30,11 @@
             <button class="btn btn-default btn-small btn-comments" data-id="{{ $post->id }}" data-type="Korona\Post">
                 <span class="comments-count">{{ $post->comments->count() }}</span> <i class="fa fa-comments" aria-hidden="true"></i>
             </button>
-            <div class="btn-group">
-                <button class="btn btn-default btn-small dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <div class="btn-group" uib-dropdown>
+                <button class="btn btn-default btn-small dropdown-toggle" uib-dropdown-toggle aria-haspopup="true" aria-expanded="false">
                     <i class="fa fa-cog" aria-hidden="true"></i> <span class="caret"></span>
                 </button>
-                <ul class="dropdown-menu">
+                <ul class="dropdown-menu" uib-dropdown-menu>
                 <li><a href="#" class="btn-permalink-post" data-id="{{ $post->id }}">
                     <i class="fa fa-link" aria-hidden="true"></i> {{ trans('posts.permalink') }}
                 </a></li>
