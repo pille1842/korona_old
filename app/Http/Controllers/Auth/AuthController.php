@@ -1,4 +1,4 @@
-<?php 
+<?php
 /*
  * Korona - A free community management system for German-language fraternities
  * Copyright (C) 2016 Eric Haberstroh <eric@erixpage.de>
@@ -18,7 +18,6 @@
  * You should have received a copy of the GNU General Public License
  * along with Korona.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 
 namespace Korona\Http\Controllers\Auth;
 
@@ -45,22 +44,19 @@ class AuthController extends Controller
     use AuthenticatesAndRegistersUsers, ThrottlesLogins;
 
     /**
-     * Ziel der Weiterleitung nach der Anmeldung.
-     *
+     * Ziel der Weiterleitung nach der Anmeldung
      * @var string
      */
     protected $redirectTo = '/';
 
     /**
-     * Nutzer können sich mit ihrem Namen anmelden.
-     *
+     * Nutzer können sich mit ihrem Namen anmelden
      * @var string
      */
     public $username = 'username';
 
     /**
-     * Erzeuge eine neue Instanz des Authentication-Controllers.
-     *
+     * Erzeuge eine neue Instanz des Authentication-Controllers
      * @return void
      */
     public function __construct()
@@ -69,10 +65,9 @@ class AuthController extends Controller
     }
 
     /**
-     * Erzeuge einen Validator für eine eingehende Registrierungsanfrage.
-     *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
+     * Erzeuge einen Validator für eine eingehende Registrierungsanfrage
+     * @param  array  $data Eingegebene Registrierungsdaten
+     * @return Illuminate\Contracts\Validation\Validator
      */
     protected function validator(array $data)
     {
@@ -85,10 +80,10 @@ class AuthController extends Controller
 
     /**
      * Erzeuge eine neue Nutzerinstanz nach der erfolgreichen Registrierung
-     * (Stub, da die Registrierung abgeschaltet ist).
+     * (Stub, da die Registrierung abgeschaltet ist)
      *
-     * @param  array  $data
-     * @return User
+     * @param  array  $data Eingegebene Registrierungsdaten
+     * @return void
      */
     protected function create(array $data)
     {
@@ -99,7 +94,7 @@ class AuthController extends Controller
      * Überschriebene Methode, um statt des Registrierformulars auf das
      * Anmeldeformular weiterzuleiten.
      *
-     * @return Response Weiterleitung nach /login
+     * @return Illuminate\Http\Response Weiterleitung nach /login
      */
     public function showRegistrationForm()
     {
@@ -108,6 +103,7 @@ class AuthController extends Controller
 
     /**
      * Überschriebene Methode zur Registrierung (Stub)
+     * @return void
      */
     public function register()
     {
@@ -118,7 +114,7 @@ class AuthController extends Controller
      * Prüft, ob ein Nutzer aktiv ist, und loggt ihn ansonsten wieder aus
      * @param  Die Anfrage
      * @param  Der eingeloggte Nutzer
-     * @return Response
+     * @return Illuminate\Http\Response View nach Logout
      */
     public function authenticated(Request $request, User $user)
     {

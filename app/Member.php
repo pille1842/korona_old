@@ -1,4 +1,4 @@
-<?php 
+<?php
 /*
  * Korona - A free community management system for German-language fraternities
  * Copyright (C) 2016 Eric Haberstroh <eric@erixpage.de>
@@ -19,7 +19,6 @@
  * along with Korona.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 namespace Korona;
 
 use Illuminate\Database\Eloquent\Model;
@@ -28,7 +27,6 @@ class Member extends Model
 {
     /**
      * Gib den bürgerlichen Namen zurück
-     *
      * @return string
      */
     public function getCivilName()
@@ -38,7 +36,6 @@ class Member extends Model
 
     /**
      * Gib den vollständigen Namen (inkl. Spitz-/Biernamen) zurück
-     *
      * @return string
      */
     public function getFullName()
@@ -48,7 +45,6 @@ class Member extends Model
 
     /**
      * Ersetze in einer Musterzeichenkette Teile des Namens des Nutzers
-     *
      * @param  string $pattern Musterzeichenkette, in der %F durch den Vornamen, %L durch den Nachnamen
      *                         und %N durch den Spitznamen (Biernamen) ersetzt wird
      * @return string
@@ -63,9 +59,8 @@ class Member extends Model
     }
 
     /**
-     * Gib den mit diesem Mitglied assoziierten Nutzer zurück
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * Gib die Beziehung des Mitglieds zu einem Nutzer zurück
+     * @return Illuminate\Database\Eloquent\Relations\BelongsTo Beziehung
      */
     public function user()
     {
@@ -73,9 +68,8 @@ class Member extends Model
     }
 
     /**
-     * Gib den Leibbursch dieses Mitglieds zurück
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * Gib die Beziehung des Mitglieds zu einem Leibburschen zurück
+     * @return Illuminate\Database\Eloquent\Relations\BelongsTo Beziehung
      */
     public function leibbursch()
     {
@@ -83,9 +77,8 @@ class Member extends Model
     }
 
     /**
-     * Gib die Leibfüchse dieses Mitglieds zurück
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * Gib die Beziehung dieses Mitglieds zu seinen Leibfüchsen zurück
+     * @return Illuminate\Database\Eloquent\Relations\HasMany Beziehung
      */
     public function leibfuechse()
     {

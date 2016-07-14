@@ -1,4 +1,4 @@
-<?php 
+<?php
 /*
  * Korona - A free community management system for German-language fraternities
  * Copyright (C) 2016 Eric Haberstroh <eric@erixpage.de>
@@ -19,7 +19,6 @@
  * along with Korona.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 namespace Korona\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -29,15 +28,17 @@ use Auth;
 
 class PostController extends Controller
 {
+    /**
+     * Erzeuge eine neue Instanz dieses Controllers
+     */
     public function __construct()
     {
         $this->middleware('auth');
     }
 
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * Gib eine View mit allen Posts dieses Nutzers zurück
+     * @return \Illuminate\Http\Response View
      */
     public function index()
     {
@@ -48,9 +49,8 @@ class PostController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
+     * Zeige ein Formular zur Erstellung eines neuen Posts an
+     * @return \Illuminate\Http\Response View
      */
     public function create()
     {
@@ -58,10 +58,9 @@ class PostController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * Speichere einen neu erzeugten Post in der Datenbank
+     * @param  Illuminate\Http\Request  $request Die Anfrage
+     * @return Illuminate\Http\Response View mit dem neu erzeugten Post
      */
     public function store(Request $request)
     {
@@ -69,10 +68,9 @@ class PostController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * Zeige einen Post an
+     * @param  int  $id ID des Posts
+     * @return Illuminate\Http\Response View des Posts
      */
     public function show($id)
     {
@@ -80,10 +78,9 @@ class PostController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * Zeige ein Formular zur Bearbeitung eines Posts an
+     * @param  int  $id ID des Posts
+     * @return \Illuminate\Http\Response Bearbeitungsformular
      */
     public function edit($id)
     {
@@ -91,11 +88,10 @@ class PostController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * Speichere Änderungen an diesem Post in der Datenbank
+     * @param  \Illuminate\Http\Request  $request Anfrage
+     * @param  int  $id ID des Posts
+     * @return \Illuminate\Http\Response View des Posts
      */
     public function update(Request $request, $id)
     {
@@ -103,10 +99,9 @@ class PostController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * Lösche den Post aus der Datenbank
+     * @param  int  $id ID des Posts
+     * @return \Illuminate\Http\Response View
      */
     public function destroy($id)
     {

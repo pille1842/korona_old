@@ -1,4 +1,4 @@
-<?php 
+<?php
 /*
  * Korona - A free community management system for German-language fraternities
  * Copyright (C) 2016 Eric Haberstroh <eric@erixpage.de>
@@ -18,7 +18,6 @@
  * You should have received a copy of the GNU General Public License
  * along with Korona.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 
 namespace Korona\Http\Controllers;
 

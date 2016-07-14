@@ -1,4 +1,4 @@
-<?php 
+<?php
 /*
  * Korona - A free community management system for German-language fraternities
  * Copyright (C) 2016 Eric Haberstroh <eric@erixpage.de>
@@ -19,20 +19,31 @@
  * along with Korona.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 namespace Korona;
 
 use Illuminate\Database\Eloquent\Model;
 
 class Dislike extends Model
 {
+    /**
+     * Verwende keine Timestamps für dieses Model
+     * @var boolean
+     */
     public $timestamps = false;
 
+    /**
+     * Gib die polymorphische Beziehung des Dislikes zurück
+     * @return Illuminate\Database\Eloquent\Relations\MorphTo Beziehung
+     */
     public function dislikable()
     {
         return $this->morphTo();
     }
 
+    /**
+     * Gib die Beziehung des Dislikes zu einem Nutzer zurück
+     * @return Illuminate\Database\Eloquent\Relations\BelongsTo Beziehung
+     */
     public function user()
     {
         return $this->belongsTo('Korona\User');

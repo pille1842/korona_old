@@ -1,4 +1,4 @@
-<?php 
+<?php
 /*
  * Korona - A free community management system for German-language fraternities
  * Copyright (C) 2016 Eric Haberstroh <eric@erixpage.de>
@@ -19,7 +19,6 @@
  * along with Korona.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 namespace Korona\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -30,8 +29,7 @@ use Korona\User;
 class UserController extends Controller
 {
     /**
-     * Erzeuge eine neue Instanz des Controllers.
-     *
+     * Erzeuge eine neue Instanz des Controllers
      * @return void
      */
     public function __construct()
@@ -41,9 +39,8 @@ class UserController extends Controller
 
     /**
      * Zeige die Profilseite des Nutzers an
-     *
-     * @param  \Illuminate\Http\Request
-     * @return \Illuminate\Http\Response
+     * @param  Illuminate\Http\Request Die Anfrage
+     * @return Illuminate\Http\Response View des Nutzerprofils
      */
     public function getMyProfile(Request $request)
     {
@@ -52,6 +49,11 @@ class UserController extends Controller
         return view('user.myprofile', ['user' => $user, 'posts' => $posts]);
     }
 
+    /**
+     * Zeige ein bestimmtes Nutzerprofil an
+     * @param  string $handle URL-freundliches Handle des Nutzers
+     * @return Illuminate\Http\Response View des Nutzerprofils
+     */
     public function getUserProfile($handle)
     {
         $user = User::where(['handle' => $handle])->first();

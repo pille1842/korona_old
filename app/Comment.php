@@ -30,24 +30,45 @@ class Comment extends Model
 {
     use Traits\Likable, Traits\Dislikable;
 
+    /**
+     * Definiere die polymorphische Beziehung
+     * @return Illuminate\Database\Eloquent\Relations\MorphTo Beziehung
+     */
     public function commentable()
     {
         return $this->morphTo();
     }
 
+    /**
+     * Definiere die Beziehung zu einem Nutzer
+     * @return Illuminate\Database\Eloquent\Relations\BelongsTo Beziehung
+     */
     public function user()
     {
         return $this->belongsTo('Korona\User');
     }
 
+    /**
+     * Gib den Markdown-formatierten Kommentartext zurück
+     *
+     * Sucht im Cache nach dem bereits geparsten Kommentar oder erzeugt
+     * ihn und gibt das Ergebnis des Parsers zurück
+     *
+     * @return string Erzeugtes HTML
+     */
     public function getFormattedBody()
     {
         return Cache::remember('comments.' . $this->id, 0, function () {
             $parser = new Parsedown();
+            $parser->setMarkupEscaped(true);
             return $parser->text($this->body);
         });
     }
 
+    /**
+     * Gib den relativen Zeitunterschied seit der Erstellung zurück
+     * @return string Nutzerfreundlicher Zeitunterschied
+     */
     public function getCreationTimeDifference()
     {
         $carbon = new Carbon($this->created_at);
@@ -55,6 +76,10 @@ class Comment extends Model
         return $carbon->diffForHumans();
     }
 
+    /**
+     * Gib den relativen Zeitunterschied seit der letzten Bearbeitung zurück
+     * @return string Nutzerfreundlicher Zeitunterschied
+     */
     public function getUpdateTimeDifference()
     {
         $carbon = new Carbon($this->updated_at);

@@ -1,4 +1,4 @@
-<?php 
+<?php
 /*
  * Korona - A free community management system for German-language fraternities
  * Copyright (C) 2016 Eric Haberstroh <eric@erixpage.de>
@@ -19,7 +19,6 @@
  * along with Korona.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 namespace Korona;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -38,8 +37,7 @@ class User extends Authenticatable
     ];
 
     /**
-     * Gib das mit diesem Nutzerkonto assoziierte Mitglied zurück
-     *
+     * Gib die Beziehung dieses Nutzers zu einem Mitglied zurück
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
     public function member()
@@ -54,7 +52,7 @@ class User extends Authenticatable
      * es notwendig, dass das Objekt einen generischen Namen hat, der dem Nutzer
      * angezeigt werden kann. In diesem Fall wird der Nickname (Biername) des
      * mit diesem Nutzer assoziierten Mitglieds zurückgegeben.
-     * 
+     *
      * @return string generischer Name
      */
     public function getGenericName()
@@ -64,7 +62,6 @@ class User extends Authenticatable
 
     /**
      * Gib die URL dieses Models zurück
-     * 
      * @return string URL
      */
     public function getUrl()

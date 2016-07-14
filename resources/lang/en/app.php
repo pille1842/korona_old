@@ -23,5 +23,6 @@ return [
     'comments' => 'Comments',
     'no_comments' => 'There are no comments yet.',
     'close' => 'Close',
+    'manual_link' => 'Click here to get help on this topic',
 
 ];

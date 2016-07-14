@@ -1,4 +1,4 @@
-<?php 
+<?php
 /*
  * Korona - A free community management system for German-language fraternities
  * Copyright (C) 2016 Eric Haberstroh <eric@erixpage.de>
@@ -19,7 +19,6 @@
  * along with Korona.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 namespace Korona\Http\Controllers;
 
 use Korona\Http\Requests;
@@ -28,8 +27,7 @@ use Illuminate\Http\Request;
 class DashboardController extends Controller
 {
     /**
-     * Erzeuge eine neue Instanz des Controllers.
-     *
+     * Erzeuge eine neue Instanz des Controllers
      * @return void
      */
     public function __construct()
@@ -38,9 +36,8 @@ class DashboardController extends Controller
     }
 
     /**
-     * Zeige das Korona-Dashboard an.
-     *
-     * @return \Illuminate\Http\Response
+     * Zeige das Korona-Dashboard an
+     * @return Illuminate\Http\Response
      */
     public function index()
     {

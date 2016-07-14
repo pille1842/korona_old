@@ -23,5 +23,6 @@ return [
     'comments' => 'Kommentare',
     'no_comments' => 'Bisher gibt es keine Kommentare.',
     'close' => 'Schließen',
+    'manual_link' => 'Hier klicken, um Hilfe zu diesem Thema zu erhalten',
 
 ];
