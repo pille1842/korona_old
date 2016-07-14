@@ -67,6 +67,7 @@ $('.btn-comments').each(function () {
                 $("#commentsPostButton").data('id', id);
                 $("#commentsPostButton").data('type', type);
                 $("#commentsPostButton").data('button', button);
+                $("#commentsCount").html(modalbody.find('.comments').data('count'));
                 modal.modal('show');
             })
             .fail(function (data) {
@@ -91,6 +92,7 @@ $('#commentsPostButton').on("click", function (e) {
             modalbody.html(data);
             $('#commentsBody').val("");
             count = modalbody.find('.comments').data('count');
+            $("#commentsCount").html(count);
             button.data('button').find('.comments-count').html(count);
         })
         .fail(function (data) {
