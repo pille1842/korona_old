@@ -1,4 +1,4 @@
-<?php 
+<?php
 /*
  * Korona - A free community management system for German-language fraternities
  * Copyright (C) 2016 Eric Haberstroh <eric@erixpage.de>
@@ -19,7 +19,6 @@
  * along with Korona.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 namespace Korona\Traits;
 
 use Korona\Like;
@@ -28,11 +27,20 @@ use Illuminate\Database\Eloquent\Model;
 
 trait Likable
 {
+    /**
+     * Gib die polymorphische Beziehung zurück
+     * @return Illuminate\Database\Eloquent\Relations\MorphMany Beziehung
+     */
     public function likes()
     {
         return $this->morphMany(Like::class, 'likable');
     }
 
+    /**
+     * Prüfe, ob dieses Likable von einem Nutzer geliked wurde
+     * @param  Korona\User   $user Der Nutzer
+     * @return boolean       Das Prüfergebnis
+     */
     public function wasLikedBy(User $user)
     {
         return ($this->likes()->where(['user_id' => $user->id])->count() > 0);

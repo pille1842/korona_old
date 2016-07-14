@@ -1,4 +1,4 @@
-<?php 
+<?php
 /*
  * Korona - A free community management system for German-language fraternities
  * Copyright (C) 2016 Eric Haberstroh <eric@erixpage.de>
@@ -19,7 +19,6 @@
  * along with Korona.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 namespace Korona\Traits;
 
 use Korona\Dislike;
@@ -28,11 +27,20 @@ use Illuminate\Database\Eloquent\Model;
 
 trait Dislikable
 {
+    /**
+     * Gib die polymorphische Beziehung zurück
+     * @return Illuminate\Database\Eloquent\Relations\MorphMany Beziehung
+     */
     public function dislikes()
     {
         return $this->morphMany(Dislike::class, 'dislikable');
     }
 
+    /**
+     * Prüfe, ob dieses Dislikable von einem Nutzer disliked wurde
+     * @param  Korona\User   $user Der Nutzer
+     * @return boolean       Das Prüfergebnis
+     */
     public function wasDislikedBy(User $user)
     {
         return ($this->dislikes()->where(['user_id' => $user->id])->count() > 0);

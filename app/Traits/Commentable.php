@@ -1,4 +1,4 @@
-<?php 
+<?php
 /*
  * Korona - A free community management system for German-language fraternities
  * Copyright (C) 2016 Eric Haberstroh <eric@erixpage.de>
@@ -19,7 +19,6 @@
  * along with Korona.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 namespace Korona\Traits;
 
 use Korona\Comment;
@@ -27,6 +26,10 @@ use Illuminate\Database\Eloquent\Model;
 
 trait Commentable
 {
+    /**
+     * Gib die polymorphische Beziehung zurück
+     * @return Illuminate\Database\Eloquent\Relations\MorphMany Beziehung
+     */
     public function comments()
     {
         return $this->morphMany(Comment::class, 'commentable');
