@@ -1,4 +1,4 @@
-<?php 
+<?php
 /*
  * Korona - A free community management system for German-language fraternities
  * Copyright (C) 2016 Eric Haberstroh <eric@erixpage.de>
@@ -31,60 +31,69 @@ use Auth;
 
 class ReactionController extends Controller
 {
+    /**
+     * Instanziiere einen ReactionController
+     */
     public function __construct()
     {
         $this->middleware('auth');
     }
 
+    /**
+     * Gib eine View mit allen Kommentaren für ein kommentierbares Objekt zurück
+     * @param  Illuminate\Http\Request  $request Die Anfrage
+     * @return Illuminate\Http\Response Die Kommentar-View
+     */
     public function getComments(Request $request)
     {
-        if (!$request->has('commentable_type') || !$request->has('commentable_id')) {
-            // Bad Request
-            return new JsonResponse(['status' => 'ERR', 'message' => trans('app.bad_request')], 400);
-        }
-        switch ($request->input('commentable_type')) {
-            case 'Korona\Post':
-                $target = \Korona\Post::findOrFail($request->input('commentable_id'));
-                break;
-            default:
-                return new JsonResponse(['status' => 'ERR', 'message' => trans('app.bad_request')], 400);
-        }
+        $this->validate($request, [
+            'commentable_type' => 'required|in:Korona\Post',
+            'commentable_id'   => 'required|integer',
+        ]);
+
+        $class = '\\'.$request->input('commentable_type');
+        $target = $class::findOrFail($request->input('commentable_id'));
+
         return $this->returnCommentsView($target);
     }
 
+    /**
+     * Speichere einen neuen Kommentar zu einem kommentierbaren Objekt
+     * @param  Illuminate\Http\Request  $request Die Anfrage
+     * @return Illuminate\Http\Response Die ergänzte Kommentar-View
+     */
     public function postComment(Request $request)
     {
-        if (!$request->has('commentable_type') || !$request->has('commentable_id')) {
-            // Bad Request
-            return new JsonResponse(['status' => 'ERR', 'message' => trans('app.bad_request')], 400);
-        }
-        switch ($request->input('commentable_type')) {
-            case 'Korona\Post':
-                $target = \Korona\Post::findOrFail($request->input('commentable_id'));
-                break;
-            default:
-                return new JsonResponse(['status' => 'ERR', 'message' => trans('app.bad_request')], 400);
-        }
+        $this->validate($request, [
+            'commentable_type' => 'required|in:Korona\Post',
+            'commentable_id'   => 'required|integer',
+            'body'             => 'required',
+        ]);
+
+        $class = '\\'.$request->input('commentable_type');
+        $target = $class::findOrFail($request->input('commentable_id'));
         $comment = new Comment();
         $comment->user_id = Auth::user()->id;
         $comment->body = $request->input('body');
         $target->comments()->save($comment);
+
         return $this->returnCommentsView($target);
     }
 
+    /**
+     * Speichere ein "Like" zu einem geeigneten Objekt
+     * @param  Illuminate\Http\Request  $request Die Anfrage
+     * @return Illuminate\Http\Response Ein JSON-Objekt mit der Anzahl von Likes und Dislikes
+     */
     public function postLike(Request $request)
     {
-        if (!$request->has('likable_type') || !$request->has('likable_id')) {
-            // Bad Request
-            return new JsonResponse(['status' => 'ERR', 'message' => trans('app.bad_request')], 400);
-        }
-        switch ($request->input('likable_type')) {
-            case 'Korona\Post':
-                $target = \Korona\Post::findOrFail($request->input('likable_id'));
-                break;
-            default:
-                return new JsonResponse(['status' => 'ERR', 'message' => trans('app.bad_request')], 400);
-        }
+        $this->validate($request, [
+            'likable_type' => 'required|in:Korona\Post',
+            'likable_id'   => 'required|integer',
+        ]);
+
+        $class = '\\'.$request->input('likable_type');
+        $target = $class::findOrFail($request->input('likable_id'));
         if (!$target->wasLikedBy(Auth::user())) {
             if ($target->wasDislikedBy(Auth::user())) {
                 $target->dislikes()->where(['user_id' => Auth::user()->id])->delete();
@@ -95,6 +104,7 @@ class ReactionController extends Controller
         } else {
             $target->likes()->where(['user_id' => Auth::user()->id])->delete();
         }
+
         return response()->json([
             'status' => 'OK',
             'likes_count' => $target->likes()->count(),
@@ -102,19 +112,20 @@ class ReactionController extends Controller
         ]);
     }
 
+    /**
+     * Speichere ein "Dislike" zu einem geeigneten Objekt
+     * @param  Illuminate\Http\Request  $request Die Anfrage
+     * @return Illuminate\Http\Response Ein JSON-Objekt mit der Anzahl von Likes und Dislikes
+     */
     public function postDislike(Request $request)
     {
-        if (!$request->has('dislikable_type') || !$request->has('dislikable_id')) {
-            // Bad Request
-            return new JsonResponse(['status' => 'ERR', 'message' => trans('app.bad_request')], 400);
-        }
-        switch ($request->input('dislikable_type')) {
-            case 'Korona\Post':
-                $target = \Korona\Post::findOrFail($request->input('dislikable_id'));
-                break;
-            default:
-                return new JsonResponse(['status' => 'ERR', 'message' => trans('app.bad_request')], 400);
-        }
+        $this->validate($request, [
+            'dislikable_type' => 'required|in:Korona\Post',
+            'dislikable_id'   => 'required|integer',
+        ]);
+
+        $class = '\\'.$request->input('dislikable_type');
+        $target = $class::findOrFail($request->input('dislikable_id'));
         if (!$target->wasDislikedBy(Auth::user())) {
             if ($target->wasLikedBy(Auth::user())) {
                 $target->likes()->where(['user_id' => Auth::user()->id])->delete();
@@ -125,6 +136,7 @@ class ReactionController extends Controller
         } else {
             $target->dislikes()->where(['user_id' => Auth::user()->id])->delete();
         }
+
         return response()->json([
             'status' => 'OK',
             'likes_count' => $target->likes()->count(),
@@ -132,10 +144,16 @@ class ReactionController extends Controller
         ]);
     }
 
-    public function returnCommentsView($target)
+    /**
+     * Gib eine Kommentar-View zurück
+     * @param  mixed $target        Ein kommentierbares Objekt
+     * @return Illuminate\View\View Die Kommentar-View
+     */
+    private function returnCommentsView($target)
     {
         $target->fresh();
         $comments = $target->comments()->orderBy('created_at')->get();
+
         return view('partials.comments', ['comments' => $comments]);
     }
 }
