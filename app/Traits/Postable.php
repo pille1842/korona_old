@@ -28,7 +28,7 @@ trait Postable
 {
     /**
      * Gib die polymorphische Beziehung zurück
-     * @return Illuminate\Database\Eloquent\Relations\MorphMany Beziehung
+     * @return \Illuminate\Database\Eloquent\Relations\MorphMany Beziehung
      */
     public function posts()
     {

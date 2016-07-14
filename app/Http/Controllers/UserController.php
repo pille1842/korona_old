@@ -39,8 +39,8 @@ class UserController extends Controller
 
     /**
      * Zeige die Profilseite des Nutzers an
-     * @param  Illuminate\Http\Request Die Anfrage
-     * @return Illuminate\Http\Response View des Nutzerprofils
+     * @param  \Illuminate\Http\Request Die Anfrage
+     * @return \Illuminate\Http\Response View des Nutzerprofils
      */
     public function getMyProfile(Request $request)
     {
@@ -52,7 +52,7 @@ class UserController extends Controller
     /**
      * Zeige ein bestimmtes Nutzerprofil an
      * @param  string $handle URL-freundliches Handle des Nutzers
-     * @return Illuminate\Http\Response View des Nutzerprofils
+     * @return \Illuminate\Http\Response View des Nutzerprofils
      */
     public function getUserProfile($handle)
     {

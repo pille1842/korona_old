@@ -37,7 +37,7 @@ class DashboardController extends Controller
 
     /**
      * Zeige das Korona-Dashboard an
-     * @return Illuminate\Http\Response
+     * @return \Illuminate\Http\Response
      */
     public function index()
     {

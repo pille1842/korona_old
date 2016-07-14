@@ -60,7 +60,7 @@ class Member extends Model
 
     /**
      * Gib die Beziehung des Mitglieds zu einem Nutzer zurück
-     * @return Illuminate\Database\Eloquent\Relations\BelongsTo Beziehung
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo Beziehung
      */
     public function user()
     {
@@ -69,7 +69,7 @@ class Member extends Model
 
     /**
      * Gib die Beziehung des Mitglieds zu einem Leibburschen zurück
-     * @return Illuminate\Database\Eloquent\Relations\BelongsTo Beziehung
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo Beziehung
      */
     public function leibbursch()
     {
@@ -78,7 +78,7 @@ class Member extends Model
 
     /**
      * Gib die Beziehung dieses Mitglieds zu seinen Leibfüchsen zurück
-     * @return Illuminate\Database\Eloquent\Relations\HasMany Beziehung
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany Beziehung
      */
     public function leibfuechse()
     {

@@ -40,8 +40,8 @@ class ReactionController extends Controller
 
     /**
      * Gib eine View mit allen Kommentaren für ein kommentierbares Objekt zurück
-     * @param  Illuminate\Http\Request  $request Die Anfrage
-     * @return Illuminate\Http\Response Die Kommentar-View
+     * @param  \Illuminate\Http\Request  $request Die Anfrage
+     * @return \Illuminate\Http\Response Die Kommentar-View
      */
     public function getComments(Request $request)
     {
@@ -58,8 +58,8 @@ class ReactionController extends Controller
 
     /**
      * Speichere einen neuen Kommentar zu einem kommentierbaren Objekt
-     * @param  Illuminate\Http\Request  $request Die Anfrage
-     * @return Illuminate\Http\Response Die ergänzte Kommentar-View
+     * @param  \Illuminate\Http\Request  $request Die Anfrage
+     * @return \Illuminate\Http\Response Die ergänzte Kommentar-View
      */
     public function postComment(Request $request)
     {
@@ -81,8 +81,8 @@ class ReactionController extends Controller
 
     /**
      * Speichere ein "Like" zu einem geeigneten Objekt
-     * @param  Illuminate\Http\Request  $request Die Anfrage
-     * @return Illuminate\Http\Response Ein JSON-Objekt mit der Anzahl von Likes und Dislikes
+     * @param  \Illuminate\Http\Request  $request Die Anfrage
+     * @return \Illuminate\Http\Response Ein JSON-Objekt mit der Anzahl von Likes und Dislikes
      */
     public function postLike(Request $request)
     {
@@ -113,8 +113,8 @@ class ReactionController extends Controller
 
     /**
      * Speichere ein "Dislike" zu einem geeigneten Objekt
-     * @param  Illuminate\Http\Request  $request Die Anfrage
-     * @return Illuminate\Http\Response Ein JSON-Objekt mit der Anzahl von Likes und Dislikes
+     * @param  \Illuminate\Http\Request  $request Die Anfrage
+     * @return \Illuminate\Http\Response Ein JSON-Objekt mit der Anzahl von Likes und Dislikes
      */
     public function postDislike(Request $request)
     {
@@ -146,7 +146,7 @@ class ReactionController extends Controller
     /**
      * Gib eine Kommentar-View zurück
      * @param  mixed $target        Ein kommentierbares Objekt
-     * @return Illuminate\View\View Die Kommentar-View
+     * @return \Illuminate\View\View Die Kommentar-View
      */
     private function returnCommentsView($target)
     {

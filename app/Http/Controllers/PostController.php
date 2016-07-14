@@ -59,8 +59,8 @@ class PostController extends Controller
 
     /**
      * Speichere einen neu erzeugten Post in der Datenbank
-     * @param  Illuminate\Http\Request  $request Die Anfrage
-     * @return Illuminate\Http\Response View mit dem neu erzeugten Post
+     * @param  \Illuminate\Http\Request  $request Die Anfrage
+     * @return \Illuminate\Http\Response View mit dem neu erzeugten Post
      */
     public function store(Request $request)
     {
@@ -70,7 +70,7 @@ class PostController extends Controller
     /**
      * Zeige einen Post an
      * @param  int  $id ID des Posts
-     * @return Illuminate\Http\Response View des Posts
+     * @return \Illuminate\Http\Response View des Posts
      */
     public function show($id)
     {

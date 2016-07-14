@@ -32,7 +32,7 @@ class Comment extends Model
 
     /**
      * Definiere die polymorphische Beziehung
-     * @return Illuminate\Database\Eloquent\Relations\MorphTo Beziehung
+     * @return \Illuminate\Database\Eloquent\Relations\MorphTo Beziehung
      */
     public function commentable()
     {
@@ -41,7 +41,7 @@ class Comment extends Model
 
     /**
      * Definiere die Beziehung zu einem Nutzer
-     * @return Illuminate\Database\Eloquent\Relations\BelongsTo Beziehung
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo Beziehung
      */
     public function user()
     {

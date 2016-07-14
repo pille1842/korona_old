@@ -29,7 +29,7 @@ trait Likable
 {
     /**
      * Gib die polymorphische Beziehung zurück
-     * @return Illuminate\Database\Eloquent\Relations\MorphMany Beziehung
+     * @return \Illuminate\Database\Eloquent\Relations\MorphMany Beziehung
      */
     public function likes()
     {
@@ -38,7 +38,7 @@ trait Likable
 
     /**
      * Prüfe, ob dieses Likable von einem Nutzer geliked wurde
-     * @param  Korona\User   $user Der Nutzer
+     * @param  \Korona\User   $user Der Nutzer
      * @return boolean       Das Prüfergebnis
      */
     public function wasLikedBy(User $user)

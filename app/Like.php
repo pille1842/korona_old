@@ -33,7 +33,7 @@ class Like extends Model
 
     /**
      * Gib die polymorphische Beziehung des Likes zurück
-     * @return Illuminate\Database\Eloquent\Relations\MorphTo Beziehung
+     * @return \Illuminate\Database\Eloquent\Relations\MorphTo Beziehung
      */
     public function likable()
     {
@@ -42,7 +42,7 @@ class Like extends Model
 
     /**
      * Gib die Beziehung des Likes zu einem Nutzer zurück
-     * @return Illuminate\Database\Eloquent\Relations\BelongsTo Beziehung
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo Beziehung
      */
     public function user()
     {

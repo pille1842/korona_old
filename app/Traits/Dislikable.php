@@ -29,7 +29,7 @@ trait Dislikable
 {
     /**
      * Gib die polymorphische Beziehung zurück
-     * @return Illuminate\Database\Eloquent\Relations\MorphMany Beziehung
+     * @return \Illuminate\Database\Eloquent\Relations\MorphMany Beziehung
      */
     public function dislikes()
     {
@@ -38,7 +38,7 @@ trait Dislikable
 
     /**
      * Prüfe, ob dieses Dislikable von einem Nutzer disliked wurde
-     * @param  Korona\User   $user Der Nutzer
+     * @param  \Korona\User   $user Der Nutzer
      * @return boolean       Das Prüfergebnis
      */
     public function wasDislikedBy(User $user)

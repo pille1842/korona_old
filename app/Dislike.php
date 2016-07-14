@@ -33,7 +33,7 @@ class Dislike extends Model
 
     /**
      * Gib die polymorphische Beziehung des Dislikes zurück
-     * @return Illuminate\Database\Eloquent\Relations\MorphTo Beziehung
+     * @return \Illuminate\Database\Eloquent\Relations\MorphTo Beziehung
      */
     public function dislikable()
     {
@@ -42,7 +42,7 @@ class Dislike extends Model
 
     /**
      * Gib die Beziehung des Dislikes zu einem Nutzer zurück
-     * @return Illuminate\Database\Eloquent\Relations\BelongsTo Beziehung
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo Beziehung
      */
     public function user()
     {

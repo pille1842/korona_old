@@ -67,7 +67,7 @@ class AuthController extends Controller
     /**
      * Erzeuge einen Validator für eine eingehende Registrierungsanfrage
      * @param  array  $data Eingegebene Registrierungsdaten
-     * @return Illuminate\Contracts\Validation\Validator
+     * @return \Illuminate\Contracts\Validation\Validator
      */
     protected function validator(array $data)
     {
@@ -94,7 +94,7 @@ class AuthController extends Controller
      * Überschriebene Methode, um statt des Registrierformulars auf das
      * Anmeldeformular weiterzuleiten.
      *
-     * @return Illuminate\Http\Response Weiterleitung nach /login
+     * @return \Illuminate\Http\Response Weiterleitung nach /login
      */
     public function showRegistrationForm()
     {
@@ -114,7 +114,7 @@ class AuthController extends Controller
      * Prüft, ob ein Nutzer aktiv ist, und loggt ihn ansonsten wieder aus
      * @param  Die Anfrage
      * @param  Der eingeloggte Nutzer
-     * @return Illuminate\Http\Response View nach Logout
+     * @return \Illuminate\Http\Response View nach Logout
      */
     public function authenticated(Request $request, User $user)
     {

@@ -32,7 +32,7 @@ class Post extends Model
 
     /**
      * Gib die polymorphische Beziehung des Posts zurück
-     * @return Illuminate\Database\Eloquent\Relations\MorphTo Beziehung
+     * @return \Illuminate\Database\Eloquent\Relations\MorphTo Beziehung
      */
     public function postable()
     {
@@ -41,7 +41,7 @@ class Post extends Model
 
     /**
      * Gib die Beziehung des Posts zu einem Nutzer zurück
-     * @return Illuminate\Database\Eloquent\Relations\BelongsTo Beziehung
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo Beziehung
      */
     public function user()
     {

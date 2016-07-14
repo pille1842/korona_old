@@ -7,7 +7,11 @@ use Symfony\Component\Finder\Finder;
 $iterator = Finder::create()
     ->files()
     ->name('*.php')
-    ->in(__DIR__ . '/../app');
+    ->exclude('vendor')
+    ->exclude('tests')
+    ->exclude('storage')
+    ->exclude('public')
+    ->in(__DIR__ . '/..');
 
 $sami = new Sami($iterator, array(
     'title' => 'Korona API-Dokumentation',
