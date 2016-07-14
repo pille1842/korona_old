@@ -19,7 +19,6 @@
  * along with Korona.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 namespace Korona\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -88,7 +87,7 @@ class ReactionController extends Controller
     public function postLike(Request $request)
     {
         $this->validate($request, [
-            'likable_type' => 'required|in:Korona\Post',
+            'likable_type' => 'required|in:Korona\Post,Korona\Comment',
             'likable_id'   => 'required|integer',
         ]);
 
@@ -120,7 +119,7 @@ class ReactionController extends Controller
     public function postDislike(Request $request)
     {
         $this->validate($request, [
-            'dislikable_type' => 'required|in:Korona\Post',
+            'dislikable_type' => 'required|in:Korona\Post,Korona\Comment',
             'dislikable_id'   => 'required|integer',
         ]);
 

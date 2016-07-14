@@ -1,4 +1,4 @@
-<div class="post">
+<div class="post likable dislikable">
     <div class="col-md-2">
 
     </div>

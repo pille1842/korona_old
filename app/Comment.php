@@ -1,4 +1,4 @@
-<?php 
+<?php
 /*
  * Korona - A free community management system for German-language fraternities
  * Copyright (C) 2016 Eric Haberstroh <eric@erixpage.de>
@@ -19,7 +19,6 @@
  * along with Korona.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 namespace Korona;
 
 use Illuminate\Database\Eloquent\Model;
@@ -29,6 +28,8 @@ use Parsedown;
 
 class Comment extends Model
 {
+    use Traits\Likable, Traits\Dislikable;
+
     public function commentable()
     {
         return $this->morphTo();
