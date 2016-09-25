@@ -111,4 +111,13 @@ class Post extends Model
         $this->touch();
         return parent::save($options);
     }
+
+    /**
+     * Gib die URL dieses Models zurück
+     * @return string URL
+     */
+    public function getUrl()
+    {
+        return action('PostController@show', $this);
+    }
 }

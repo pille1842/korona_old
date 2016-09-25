@@ -15,10 +15,10 @@ $("body").on("click", ".btn-like", function () {
     button.prop("disabled", true);
     $.post('/api/like', { likable_type: type, likable_id: id, _token: token })
         .done(function (data) {
-            button.toggleClass('btn-primary');
+            button.toggleClass('btn-success');
             button.find(".likes-count").html(data.likes_count);
-            if (dislike.hasClass('btn-primary')) {
-                dislike.removeClass('btn-primary');
+            if (dislike.hasClass('btn-danger')) {
+                dislike.removeClass('btn-danger');
                 dislike.find(".dislikes-count").html(data.dislikes_count);
             }
         })
@@ -39,10 +39,10 @@ $("body").on("click", ".btn-dislike", function () {
     button.prop("disabled", true);
     $.post('/api/dislike', { dislikable_type: type, dislikable_id: id, _token: token })
         .done(function (data) {
-            button.toggleClass('btn-primary');
+            button.toggleClass('btn-danger');
             button.find(".dislikes-count").html(data.dislikes_count);
-            if (like.hasClass('btn-primary')) {
-                like.removeClass('btn-primary');
+            if (like.hasClass('btn-success')) {
+                like.removeClass('btn-success');
                 like.find(".likes-count").html(data.likes_count);
             }
         })
@@ -51,54 +51,5 @@ $("body").on("click", ".btn-dislike", function () {
         })
         .always(function (data) {
             button.prop("disabled", false);
-        });
-});
-
-$('.btn-comments').each(function () {
-    $(this).on("click", function () {
-        var button = $(this);
-        var id = button.data('id');
-        var type = button.data('type');
-        var modal = $('#commentsModal');
-        var modalbody = $('#commentsModalBody');
-        $.get('/api/comments', { commentable_type: type, commentable_id: id, _token: token })
-            .done(function (data) {
-                modalbody.html(data);
-                $("#commentsPostButton").data('id', id);
-                $("#commentsPostButton").data('type', type);
-                $("#commentsPostButton").data('button', button);
-                $("#commentsCount").html(modalbody.find('.comments').data('count'));
-                modal.modal('show');
-            })
-            .fail(function (data) {
-                console.log(data.responseText);
-            })
-            .always(function (data ) {
-
-            });
-    });
-});
-
-$('#commentsPostButton').on("click", function (e) {
-    e.preventDefault();
-    var button = $(this);
-    var id = button.data('id');
-    var type = button.data('type');
-    var modal = $('#commentsModal');
-    var modalbody = $('#commentsModalBody');
-    var body = $('#commentsBody').val();
-    $.post('/api/comment', { commentable_type: type, commentable_id: id, body: body, _token: token })
-        .done(function (data) {
-            modalbody.html(data);
-            $('#commentsBody').val("");
-            count = modalbody.find('.comments').data('count');
-            $("#commentsCount").html(count);
-            button.data('button').find('.comments-count').html(count);
-        })
-        .fail(function (data) {
-            modalbody.html(data.responseText);
-        })
-        .always(function (data) {
-            modalbody.html(data.responseText);
         });
 });

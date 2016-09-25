@@ -1,11 +1,18 @@
 <div class="post likable dislikable">
     <div class="col-md-2">
-
+    <img class="img-responsive" src="http://placehold.it/350x350" alt="{{ $post->user->member->nickname }}">
     </div>
     <div class="col-md-10">
-        <a href="{{ url('/u/' . $post->user->handle) }}" class="post-user">{{ $post->user->member->nickname }}</a>
-        &rarr;
-        <a href="{{ $post->postable->getUrl() }}" class="post-user">{{ $post->postable->getGenericName() }}</a>
+        @if ($post->postable->getUrl() == $post->user->getUrl())
+            <a href="{{ url('/u/' . $post->user->handle) }}"
+               class="post-user">{{ $post->user->member->nickname }}</a>
+        @else
+            <a href="{{ url('/u/' . $post->user->handle) }}"
+               class="post-user">{{ $post->user->member->nickname }}</a>
+            &rarr;
+            <a href="{{ $post->postable->getUrl() }}"
+               class="post-user">{{ $post->postable->getGenericName() }}</a>
+        @endif
         <br>
         <div class="post-date">
             {{ $post->getCreationTimeDifference() }}
@@ -19,19 +26,27 @@
     </div>
     <div class="row">
         <div class="col-md-10 col-md-offset-2">
-            <button class="btn btn-default btn-small btn-like {{ $post->wasLikedBy(Auth::user()) ? 'btn-primary' : '' }}"
+            <button class="btn btn-default btn-small btn-like {{ $post->wasLikedBy(Auth::user()) ? 'btn-success' : '' }}"
                 data-id="{{ $post->id }}" data-type="Korona\Post">
-                <span class="likes-count">{{ $post->likes->count() }}</span> <i class="fa fa-thumbs-up" aria-hidden="true"></i>
+                <span class="likes-count">{{ $post->likes->count() }}</span>
+                <i class="fa fa-thumbs-up" aria-hidden="true"></i>
             </button>
-            <button class="btn btn-default btn-small btn-dislike {{ $post->wasDislikedBy(Auth::user()) ? 'btn-primary' : '' }}"
+            <button
+                class="btn btn-default btn-small btn-dislike {{ $post->wasDislikedBy(Auth::user()) ? 'btn-danger' : '' }}"
                 data-id="{{ $post->id }}" data-type="Korona\Post">
-                <span class="dislikes-count">{{ $post->dislikes->count() }}</span> <i class="fa fa-thumbs-down" aria-hidden="true"></i>
+                <span class="dislikes-count">{{ $post->dislikes->count() }}</span>
+                <i class="fa fa-thumbs-down" aria-hidden="true"></i>
             </button>
-            <button class="btn btn-default btn-small btn-comments" data-id="{{ $post->id }}" data-type="Korona\Post">
-                <span class="comments-count">{{ $post->comments->count() }}</span> <i class="fa fa-comments" aria-hidden="true"></i>
-            </button>
+            @if ((isset($isCommentsView) && !$isCommentsView) || !isset($isCommentsView))
+            <a href="{{ action('PostController@show', $post->id) }}"
+               class="btn btn-default btn-small btn-comments">
+                <span class="comments-count">{{ $post->comments->count() }}</span>
+                <i class="fa fa-comments" aria-hidden="true"></i>
+            </a>
+            @endif
             <div class="btn-group">
-                <button class="btn btn-default btn-small dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <button class="btn btn-default btn-small dropdown-toggle"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fa fa-cog" aria-hidden="true"></i> <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu">
