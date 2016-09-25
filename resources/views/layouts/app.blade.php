@@ -81,6 +81,7 @@
     <input type="hidden" name="token" id="token" value="{{ csrf_token() }}">
     <script src="{{ url('/jquery/jquery-2.2.4.js') }}"></script>
     <script src="{{ url('/bootstrap/dist/js/bootstrap.js') }}"></script>
+    <script src="{{ url('/js/clipboard.min.js') }}"></script>
     <script src="{{ url('/js/app.js') }}"></script>
 </body>
 </html>

@@ -1,7 +1,10 @@
-// Alle Tooltips aktivieren
-
+// CSRF-Token
 var token = $('#token').val();
 
+// Clipboard aktivieren
+new Clipboard('.btn-clipboard');
+
+// Alle Tooltips aktivieren
 $(function () {
     $('[data-toggle="tooltip"]').tooltip()
 });
@@ -52,4 +55,15 @@ $("body").on("click", ".btn-dislike", function () {
         .always(function (data) {
             button.prop("disabled", false);
         });
+});
+
+$(".input-permalink").click(function () {
+    $(this).select();
+});
+
+$('#deleteCommentModal').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget);
+    var action = button.data('action');
+    var modal = $(this);
+    modal.find('.modal-footer form').attr('action', action);
 });

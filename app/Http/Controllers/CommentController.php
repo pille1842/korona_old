@@ -24,6 +24,7 @@ namespace Korona\Http\Controllers;
 use Illuminate\Http\Request;
 
 use Auth;
+use Cache;
 use Korona\Http\Requests;
 use Korona\Comment;
 
@@ -92,7 +93,9 @@ class CommentController extends Controller
      */
     public function edit($id)
     {
-        //
+        $comment = Comment::findOrFail($id);
+
+        return view('comment.edit', ['comment' => $comment]);
     }
 
     /**
@@ -104,7 +107,16 @@ class CommentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'body'             => 'required',
+        ]);
+
+        $comment = Comment::findOrFail($id);
+        $comment->body = $request->input('body');
+        $comment->save();
+        Cache::forget('comments.' . $id);
+
+        return redirect()->to($comment->commentable->getUrl());
     }
 
     /**
@@ -115,6 +127,12 @@ class CommentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $comment = Comment::findOrFail($id);
+
+        $url = $comment->commentable->getUrl();
+        $comment->delete();
+        Cache::forget('comments.' . $id);
+
+        return redirect()->to($url);
     }
 }

@@ -50,7 +50,8 @@
                     <i class="fa fa-cog" aria-hidden="true"></i> <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu">
-                <li><a href="#" class="btn-permalink-post" data-id="{{ $post->id }}">
+                <li><a href="#" class="btn-permalink-post" data-id="{{ $post->id }}"
+                       data-toggle="modal" data-target="#permalinkModal{{ $post->id }}">
                     <i class="fa fa-link" aria-hidden="true"></i> {{ trans('posts.permalink') }}
                 </a></li>
                 <li><a href="#" class="btn-flag-post" data-id="{{ $post->id }}">
@@ -65,6 +66,33 @@
                     </a></li>
                 @endif
                 </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" tabindex="-1" role="dialog" id="permalinkModal{{ $post->id }}">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">{{ trans('posts.permalink') }}</h4>
+            </div>
+            <div class="modal-body">
+                <div class="input-group">
+                    <input type="text" class="form-control input-permalink" id="input-permalink-{{ $post->id }}" value="{{ action('PostController@show', $post->id) }}" readonly>
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default btn-clipboard"
+                                data-clipboard-target="#input-permalink-{{ $post->id }}"
+                                data-toggle="tooltip" title="{{ trans('app.copy_to_clipboard') }}">
+                            <i class="fa fa-clipboard" aria-hidden="true"></i>
+                        </button>
+                    </span>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">
+                    {{ trans('app.close') }}
+                </button>
             </div>
         </div>
     </div>
