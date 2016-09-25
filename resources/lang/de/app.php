@@ -12,6 +12,8 @@ return [
     |
     */
 
+    'presented_with' => 'Präsentiert mit',
+    'by' => 'von',
     'dashboard' => 'Dashboard',
     'last_edit' => 'zuletzt bearbeitet',
     'flag' => 'melden',
@@ -19,6 +21,7 @@ return [
     'delete' => 'löschen',
     'bad_request' => 'Hoppla! Da ist etwas schiefgelaufen.',
     'post_comment' => 'Senden',
+    'your_comment' => 'Neuen Kommentar hinzufügen',
     'write_a_comment' => 'Verfasse einen Kommentar...',
     'comments' => 'Kommentare',
     'no_comments' => 'Bisher gibt es keine Kommentare.',

@@ -47,3 +47,19 @@
 .btn-delete-comment, .btn-flag-comment {
     cursor: pointer;
 }
+
+.form-comment {
+    margin-top: 30px;
+}
+
+.footer {
+    color: #bababa;
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 30px;
+}
+
+.footer a {
+    color: #bababa;
+    text-decoration: underline;
+}

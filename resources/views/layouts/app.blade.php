@@ -70,6 +70,13 @@
         @yield('content')
     </div>
 
+    <div class="container footer">
+        {{ trans('app.presented_with') }} <span class="glyphicon glyphicon-heart"></span>
+        {{ trans('app.by') }} <a href="http://www.erixpage.de/koronawiki" target="_blank">
+            <img alt="Korona" title="Korona" src="{{ asset('artwork/korona_greyscale.png') }}">
+        </a>
+    </div>
+
     <!-- JavaScripts -->
     <input type="hidden" name="token" id="token" value="{{ csrf_token() }}">
     <script src="{{ url('/jquery/jquery-2.2.4.js') }}"></script>
