@@ -19,6 +19,7 @@
  * along with Korona.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+use Vsch\TranslationManager\Translator;
 
 Route::get('/', function () {
     return view('welcome');
@@ -35,3 +36,7 @@ Route::resource('/comment', 'CommentController');
 
 Route::post('/api/like', 'ReactionController@postLike');
 Route::post('/api/dislike', 'ReactionController@postDislike');
+
+/*\Route::group(['middleware' => 'auth', 'prefix' => 'translations'], function () {
+    Translator::routes();
+});*/

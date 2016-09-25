@@ -12,17 +12,19 @@ return [
     |
     */
 
-    'dashboard' => 'Dashboard',
-    'last_edit' => 'last edited',
-    'flag' => 'report',
-    'edit' => 'edit',
-    'delete' => 'delete',
-    'bad_request' => 'Oops! Something went wrong there.',
-    'post_comment' => 'Send',
-    'write_a_comment' => 'Write a comment...',
-    'comments' => 'Comments',
-    'no_comments' => 'There are no comments yet.',
-    'close' => 'Close',
-    'manual_link' => 'Click here to get help on this topic',
-
+    'bad_request'       => 'Oops! Something went wrong there.',
+    'by'                => 'by',
+    'close'             => 'Close',
+    'comments'          => 'Comments',
+    'dashboard'         => 'Dashboard',
+    'delete'            => 'delete',
+    'edit'              => 'edit',
+    'flag'              => 'report',
+    'last_edit'         => 'last edited',
+    'manual_link'       => 'Click here to get help on this topic',
+    'no_comments'       => 'There are no comments yet.',
+    'post_comment'      => 'Send',
+    'presented_with'    => 'Presented with',
+    'write_a_comment'   => 'Write a comment...',
+    'your_comment'      => 'Add a new comment',
 ];

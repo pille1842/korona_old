@@ -8,7 +8,8 @@
         "php": ">=5.5.9",
         "laravel/framework": "5.2.*",
         "nesbot/carbon": "^1.21",
-        "erusev/parsedown": "^1.6"
+        "erusev/parsedown": "^1.6",
+        "vsch/laravel-translation-manager": "*"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
@@ -46,6 +47,7 @@
         ],
         "post-update-cmd": [
             "Illuminate\\Foundation\\ComposerScripts::postUpdate",
+            "php artisan vendor:publish --provider=\"Vsch\\TranslationManager\\ManagerServiceProvider\" --tag=public",
             "php artisan optimize"
         ]
     },
