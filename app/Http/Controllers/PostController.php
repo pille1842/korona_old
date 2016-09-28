@@ -121,6 +121,8 @@ class PostController extends Controller
         $post->body = $request->input('body');
         $post->save();
 
+        Cache::forget('posts.' . $id);
+
         return redirect()->action('PostController@show', $post);
     }
 
@@ -131,6 +133,11 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $post = Post::findOrFail($id);
+        $target = $post->postable->getUrl();
+        $post->comments()->delete();
+        $post->delete();
+
+        return redirect()->to($target);
     }
 }

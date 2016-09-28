@@ -38,6 +38,6 @@ trait Commentable
     public function updateTouchedTimestamp()
     {
     	$this->touched_at = Carbon::now();
-    	$this->save(['timestamps' => false]);
+    	$this->save();
     }
 }

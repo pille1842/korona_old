@@ -30,7 +30,7 @@ class Post extends Model
 {
     use Traits\Likable, Traits\Dislikable, Traits\Commentable;
 
-    public $timestamps = ['created_at', 'updated_at', 'touched_at'];
+    public $timestamps = ['created_at', 'updated_at', 'touched_at', 'modified_at'];
 
     /**
      * Gib die polymorphische Beziehung des Posts zurück
@@ -82,9 +82,9 @@ class Post extends Model
      * Gib den relativen Zeitunterschied seit der letzten Bearbeitung zurück
      * @return string nutzerfreundlicher Zeitunterschied
      */
-    public function getUpdateTimeDifference()
+    public function getModifyTimeDifference()
     {
-        $carbon = new Carbon($this->updated_at);
+        $carbon = new Carbon($this->modified_at);
         $carbon->setLocale(config('app.locale'));
         return $carbon->diffForHumans();
     }
@@ -96,5 +96,11 @@ class Post extends Model
     public function getUrl()
     {
         return action('PostController@show', $this);
+    }
+
+    public function setBodyAttribute($value)
+    {
+        $this->attributes['body'] = $value;
+        $this->modified_at = Carbon::now();
     }
 }

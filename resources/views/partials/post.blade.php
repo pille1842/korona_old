@@ -16,8 +16,8 @@
         <br>
         <div class="post-date">
             {{ $post->getCreationTimeDifference() }}
-            @if ($post->updated_at != $post->created_at)
-                ({{ trans('app.last_edit') }} {{ $post->getUpdateTimeDifference() }})
+            @if ($post->modified_at != null && $post->modified_at != $post->created_at)
+                ({{ trans('app.last_edit') }} {{ $post->getModifyTimeDifference() }})
             @endif
         </div>
         <div class="post-body">
@@ -61,7 +61,8 @@
                     <li><a href="{{ action('PostController@edit', $post) }}" class="btn-edit-post">
                         <i class="fa fa-pencil" aria-hidden="true"></i> {{ trans('app.edit') }}
                     </a></li>
-                    <li><a href="#" class="btn-delete-post" data-id="{{ $post->id }}">
+                    <li><a href="#" class="btn-delete-post" data-toggle="modal"
+                           data-target="#deleteModal{{ $post->id }}">
                         <i class="fa fa-trash" aria-hidden="true"></i> {{ trans('app.delete') }}
                     </a></li>
                 @endif
@@ -93,6 +94,31 @@
                 <button type="button" class="btn btn-default" data-dismiss="modal">
                     {{ trans('app.close') }}
                 </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" tabindex="-1" role="dialog" id="deleteModal{{ $post->id }}">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">{{ trans('posts.really_delete_title') }}</h4>
+            </div>
+            <div class="modal-body">
+                {{ trans('posts.really_delete_body') }}
+            </div>
+            <div class="modal-footer">
+                <form method="post" action="{{ action('PostController@destroy', $post) }}">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                        {{ trans('app.close') }}
+                    </button>
+                    <button type="submit" class="btn btn-danger">
+                        {{ trans('posts.really_delete_button') }}
+                    </button>
+                    {!! csrf_field() !!}
+                    {!! method_field('delete') !!}
+                </form>
             </div>
         </div>
     </div>
