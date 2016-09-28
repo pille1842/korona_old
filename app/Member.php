@@ -52,6 +52,19 @@ class Member extends Model
         }
     }
 
+    public function getGenitiveShortName()
+    {
+        $name = $this->getShortName();
+        switch (substr(strtolower($name), -1, 1)) {
+            case 's':
+            case 'x':
+            case 'z':
+                return $name . "'";
+            default:
+                return $name . 's';
+        }
+    }
+
     /**
      * Ersetze in einer Musterzeichenkette Teile des Namens des Nutzers
      * @param  string $pattern Musterzeichenkette, in der %F durch den Vornamen, %L durch den Nachnamen
