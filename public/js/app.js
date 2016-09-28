@@ -20,10 +20,16 @@ $("body").on("click", ".btn-like", function () {
         .done(function (data) {
             button.toggleClass('btn-success');
             button.find(".likes-count").html(data.likes_count);
+            button.tooltip('hide')
+                  .attr('data-original-title', data.likers)
+                  .tooltip('fixTitle');
             if (dislike.hasClass('btn-danger')) {
                 dislike.removeClass('btn-danger');
                 dislike.find(".dislikes-count").html(data.dislikes_count);
             }
+            dislike.tooltip('hide')
+                   .attr('data-original-title', data.dislikers)
+                   .tooltip('fixTitle');
         })
         .fail(function (data) {
             alert(data.message);
@@ -44,10 +50,16 @@ $("body").on("click", ".btn-dislike", function () {
         .done(function (data) {
             button.toggleClass('btn-danger');
             button.find(".dislikes-count").html(data.dislikes_count);
+            button.tooltip('hide')
+                  .attr('data-original-title', data.dislikers)
+                  .tooltip('fixTitle');
             if (like.hasClass('btn-success')) {
                 like.removeClass('btn-success');
                 like.find(".likes-count").html(data.likes_count);
             }
+            like.tooltip('hide')
+                .attr('data-original-title', data.likers)
+                .tooltip('fixTitle');
         })
         .fail(function (data) {
             alert(data.message);

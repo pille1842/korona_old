@@ -26,14 +26,30 @@
     </div>
     <div class="row">
         <div class="col-md-10 col-md-offset-2">
+            <?php
+                $arrPostLikers = [];
+                foreach ($post->likes as $like) {
+                    $arrPostLikers[] = $like->user->member->getShortName();
+                }
+                $postLikers = implode(', ', $arrPostLikers);
+            ?>
             <button class="btn btn-default btn-small btn-like {{ $post->wasLikedBy(Auth::user()) ? 'btn-success' : '' }}"
-                data-id="{{ $post->id }}" data-type="Korona\Post">
+                data-id="{{ $post->id }}" data-type="Korona\Post"
+                data-toggle="tooltip" title="{{ $postLikers }}">
                 <span class="likes-count">{{ $post->likes->count() }}</span>
                 <i class="fa fa-thumbs-up" aria-hidden="true"></i>
             </button>
+            <?php
+                $arrPostDislikers = [];
+                foreach ($post->dislikes as $dislike) {
+                    $arrPostDislikers[] = $dislike->user->member->getShortName();
+                }
+                $postDislikers = implode(', ', $arrPostDislikers);
+            ?>
             <button
                 class="btn btn-default btn-small btn-dislike {{ $post->wasDislikedBy(Auth::user()) ? 'btn-danger' : '' }}"
-                data-id="{{ $post->id }}" data-type="Korona\Post">
+                data-id="{{ $post->id }}" data-type="Korona\Post"
+                data-toggle="tooltip" title="{{ $postDislikers }}">
                 <span class="dislikes-count">{{ $post->dislikes->count() }}</span>
                 <i class="fa fa-thumbs-down" aria-hidden="true"></i>
             </button>

@@ -63,10 +63,24 @@ class ReactionController extends Controller
             $target->likes()->where(['user_id' => Auth::user()->id])->delete();
         }
 
+        $arrLikers = [];
+        foreach ($target->likes as $like) {
+            $arrLikers[] = $like->user->member->getShortName();
+        }
+        $likers = implode(',', $arrLikers);
+
+        $arrDislikers = [];
+        foreach ($target->dislikes as $dislike) {
+            $arrDislikers[] = $dislike->user->member->getShortName();
+        }
+        $dislikers = implode(',', $arrDislikers);
+
         return response()->json([
             'status' => 'OK',
             'likes_count' => $target->likes()->count(),
             'dislikes_count' => $target->dislikes()->count(),
+            'likers' => $likers,
+            'dislikers' => $dislikers,
         ]);
     }
 
@@ -95,10 +109,24 @@ class ReactionController extends Controller
             $target->dislikes()->where(['user_id' => Auth::user()->id])->delete();
         }
 
+        $arrLikers = [];
+        foreach ($target->likes as $like) {
+            $arrLikers[] = $like->user->member->getShortName();
+        }
+        $likers = implode(', ', $arrLikers);
+
+        $arrDislikers = [];
+        foreach ($target->dislikes as $dislike) {
+            $arrDislikers[] = $dislike->user->member->getShortName();
+        }
+        $dislikers = implode(', ', $arrDislikers);
+
         return response()->json([
             'status' => 'OK',
             'likes_count' => $target->likes()->count(),
             'dislikes_count' => $target->dislikes()->count(),
+            'likers' => $likers,
+            'dislikers' => $dislikers,
         ]);
     }
 }
