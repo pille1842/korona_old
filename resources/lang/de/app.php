@@ -14,6 +14,7 @@ return [
 
     'bad_request'                   => 'Hoppla! Da ist etwas schiefgelaufen.',
     'by'                            => 'von',
+    'cancel'                        => 'Abbrechen',
     'close'                         => 'Schließen',
     'comments'                      => 'Kommentare',
     'copy_to_clipboard'             => 'In die Zwischenablage kopieren',

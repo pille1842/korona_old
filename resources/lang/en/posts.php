@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'bulletin_board'        => 'Bulletin Board',
     'edit_post'             => 'Edit post',
     'list_all_my_posts'     => 'List of all my posts',
     'make_post'             => 'Post',

@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'bulletin_board'        => 'Pinnwand',
     'edit_post'             => 'Post bearbeiten',
     'list_all_my_posts'     => 'Liste meiner Posts',
     'make_post'             => 'Posten',

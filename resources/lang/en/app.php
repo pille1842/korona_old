@@ -14,6 +14,7 @@ return [
 
     'bad_request'                   => 'Oops! Something went wrong there.',
     'by'                            => 'by',
+    'cancel'                        => 'Cancel',
     'close'                         => 'Close',
     'comments'                      => 'Comments',
     'copy_to_clipboard'             => 'Copy to clipboard',
