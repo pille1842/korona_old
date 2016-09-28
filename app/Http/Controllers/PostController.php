@@ -25,6 +25,7 @@ use Illuminate\Http\Request;
 use Korona\Http\Requests;
 use Korona\Post;
 use Auth;
+use Cache;
 
 class PostController extends Controller
 {
@@ -64,7 +65,20 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'postable_type'    => 'required|in:Korona\User',
+            'postable_id'      => 'required|integer',
+            'body'             => 'required',
+        ]);
+
+        $class = '\\'.$request->input('postable_type');
+        $target = $class::findOrFail($request->input('postable_id'));
+        $post = new Post();
+        $post->user_id = Auth::user()->id;
+        $post->body = $request->input('body');
+        $target->posts()->save($post);
+
+        return redirect()->action('PostController@show', $post);
     }
 
     /**
@@ -86,7 +100,9 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        //
+        $post = Post::findOrFail($id);
+
+        return view('post.edit', ['post' => $post]);
     }
 
     /**
@@ -97,7 +113,15 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'body'             => 'required'
+        ]);
+
+        $post = Post::findOrFail($id);
+        $post->body = $request->input('body');
+        $post->save();
+
+        return redirect()->action('PostController@show', $post);
     }
 
     /**

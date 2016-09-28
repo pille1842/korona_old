@@ -66,12 +66,17 @@ class CommentController extends Controller
 
         $class = '\\'.$request->input('commentable_type');
         $target = $class::findOrFail($request->input('commentable_id'));
+
         $comment = new Comment();
         $comment->user_id = Auth::user()->id;
         $comment->body = $request->input('body');
-        $target->comments()->save($comment);
+        $comment->commentable_id = $request->input('commentable_id');
+        $comment->commentable_type = $request->input('commentable_type');
+        $comment->save();
 
-        return redirect()->to($target->getUrl());
+        $target->updateTouchedTimestamp();
+
+        return redirect()->to($target->getUrl() . "#comment-" . $comment->id);
     }
 
     /**
@@ -114,9 +119,8 @@ class CommentController extends Controller
         $comment = Comment::findOrFail($id);
         $comment->body = $request->input('body');
         $comment->save();
-        Cache::forget('comments.' . $id);
 
-        return redirect()->to($comment->commentable->getUrl());
+        return redirect()->to($comment->commentable->getUrl() . "#comment-" . $comment->id);
     }
 
     /**
@@ -131,7 +135,6 @@ class CommentController extends Controller
 
         $url = $comment->commentable->getUrl();
         $comment->delete();
-        Cache::forget('comments.' . $id);
 
         return redirect()->to($url);
     }

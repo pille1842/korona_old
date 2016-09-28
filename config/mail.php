@@ -55,7 +55,7 @@ return [
     |
     */
 
-    'from' => ['address' => null, 'name' => null],
+    'from' => ['address' => 'korona-dev@erixpage.de', 'name' => 'Korona'],
 
     /*
     |--------------------------------------------------------------------------

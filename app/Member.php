@@ -43,6 +43,15 @@ class Member extends Model
         return $this->replaceNamePattern(config('app.patterns.full_name'));
     }
 
+    public function getShortName()
+    {
+        if ($this->nickname != '') {
+            return $this->nickname;
+        } else {
+            return $this->firstname . ' ' . $this->lastname . ' s.n.';
+        }
+    }
+
     /**
      * Ersetze in einer Musterzeichenkette Teile des Namens des Nutzers
      * @param  string $pattern Musterzeichenkette, in der %F durch den Vornamen, %L durch den Nachnamen

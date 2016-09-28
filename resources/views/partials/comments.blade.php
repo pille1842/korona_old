@@ -1,6 +1,6 @@
 <div class="comments" data-count="{{ count($comments) }}">
     @forelse ($comments as $comment)
-        <div class="comment likable dislikable row">
+        <div class="comment likable dislikable row" id="comment-{{ $comment->id }}">
             <div class="col-sm-1">
             <img class="img-responsive"
                  src="http://placehold.it/50x50" alt="{{ $comment->user->member->nickname }}">

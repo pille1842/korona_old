@@ -86,4 +86,10 @@ class Comment extends Model
         $carbon->setLocale(config('app.locale'));
         return $carbon->diffForHumans();
     }
+
+    public function save(array $options = [])
+    {
+        Cache::forget('comments.' . $this->id);
+        return parent::save($options);
+    }
 }

@@ -1,6 +1,6 @@
 <div class="post likable dislikable">
     <div class="col-md-2">
-    <img class="img-responsive" src="http://placehold.it/350x350" alt="{{ $post->user->member->nickname }}">
+    <img class="img-responsive" src="http://placehold.it/350x350" alt="{{ $post->user->member->getShortName() }}">
     </div>
     <div class="col-md-10">
         @if ($post->postable->getUrl() == $post->user->getUrl())
@@ -16,7 +16,7 @@
         <br>
         <div class="post-date">
             {{ $post->getCreationTimeDifference() }}
-            @if ($post->updated_at != null)
+            @if ($post->updated_at != $post->created_at)
                 ({{ trans('app.last_edit') }} {{ $post->getUpdateTimeDifference() }})
             @endif
         </div>
@@ -58,7 +58,7 @@
                     <i class="fa fa-flag" aria-hidden="true"></i> {{ trans('app.flag') }}
                 </a></li>
                 @if (Auth::user()->id == $post->user_id)
-                    <li><a href="#" class="btn-edit-post" data-id="{{ $post->id }}">
+                    <li><a href="{{ action('PostController@edit', $post) }}" class="btn-edit-post">
                         <i class="fa fa-pencil" aria-hidden="true"></i> {{ trans('app.edit') }}
                     </a></li>
                     <li><a href="#" class="btn-delete-post" data-id="{{ $post->id }}">

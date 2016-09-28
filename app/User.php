@@ -57,7 +57,7 @@ class User extends Authenticatable
      */
     public function getGenericName()
     {
-        return $this->member->nickname;
+        return $this->member->getShortName();
     }
 
     /**

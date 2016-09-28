@@ -22,7 +22,7 @@
 namespace Korona\Traits;
 
 use Korona\Comment;
-use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 trait Commentable
 {
@@ -33,5 +33,11 @@ trait Commentable
     public function comments()
     {
         return $this->morphMany(Comment::class, 'commentable');
+    }
+
+    public function updateTouchedTimestamp()
+    {
+    	$this->touched_at = Carbon::now();
+    	$this->save(['timestamps' => false]);
     }
 }

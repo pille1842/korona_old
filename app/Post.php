@@ -30,6 +30,8 @@ class Post extends Model
 {
     use Traits\Likable, Traits\Dislikable, Traits\Commentable;
 
+    public $timestamps = ['created_at', 'updated_at', 'touched_at'];
+
     /**
      * Gib die polymorphische Beziehung des Posts zurück
      * @return \Illuminate\Database\Eloquent\Relations\MorphTo Beziehung
@@ -85,31 +87,6 @@ class Post extends Model
         $carbon = new Carbon($this->updated_at);
         $carbon->setLocale(config('app.locale'));
         return $carbon->diffForHumans();
-    }
-
-    /**
-     * Berühre diesen Post, um ihn in der Timeline nach oben zu rücken
-     *
-     * Setze den "touched_at"-Zeitstempel dieses Posts auf Jetzt, z.B.
-     * bei Erstellung eines neuen Kommentars, um ihn in der Liste der Posts
-     * nach oben zu rücken
-     *
-     * @return void
-     */
-    public function touch()
-    {
-        $this->touched_at = Carbon::now();
-    }
-
-    /**
-     * Berühre diesen Post und speichere ihn in der Datenbank
-     * @param  array  $options Optionen
-     * @return boolean         Ergebnis des Speichervorgangs
-     */
-    public function save(array $options = [])
-    {
-        $this->touch();
-        return parent::save($options);
     }
 
     /**
