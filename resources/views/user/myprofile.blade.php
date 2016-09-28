@@ -3,6 +3,8 @@
 @section('content')
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
+            <h2>{{ Auth::user()->member->getGenitiveShortName() }} {{ trans('posts.bulletin_board') }}</h2>
+
             <form method="post" action="{{ action('PostController@store') }}" class="form">
                 <div class="form-group">
                     <label for="txtPostBody">{{ trans('posts.new_post') }}</label>
